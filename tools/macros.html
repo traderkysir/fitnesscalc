@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macro Calculator — FitnessCalc</title>
+<meta name="description" content="Calculate ideal protein, carbs, and fat for your calorie and fitness goal.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/macros.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Nutrition<span>›</span>Macro Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Macro Calculator</h1>
+<p class="subtitle">Optimal protein, carbs, and fat based on your goal.</p>
+<div class="form-row"><label>Daily Calorie Target (kcal)</label><input type="number" id="mc_cal" placeholder="e.g. 2200"></div>
+<div class="form-row"><label>Goal</label>
+  <select id="mc_goal">
+    <option value="lose">Lose Fat</option>
+    <option value="maintain" selected>Maintain Weight</option>
+    <option value="gain">Build Muscle</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcMacro()">Calculate Macros</button>
+<div class="result-box" id="result">
+  <div class="result-label">Daily Macro Targets</div>
+  <div class="result-grid" style="grid-template-columns:1fr 1fr 1fr;margin-top:8px">
+    <div class="result-item"><div class="val" id="mc_p">—</div><div class="lbl">Protein (g)</div></div>
+    <div class="result-item"><div class="val" id="mc_c">—</div><div class="lbl">Carbs (g)</div></div>
+    <div class="result-item"><div class="val" id="mc_f">—</div><div class="lbl">Fat (g)</div></div>
+  </div>
+  <div class="result-sub" style="margin-top:12px" id="mc_split"></div>
+</div>
+<script>
+function calcMacro(){
+  var cal=parseFloat(document.getElementById('mc_cal').value);
+  var goal=document.getElementById('mc_goal').value;
+  if(!cal)return alert('Please enter daily calories.');
+  var pp,cp,fp;
+  if(goal==='lose'){pp=0.40;cp=0.35;fp=0.25;}
+  else if(goal==='gain'){pp=0.30;cp=0.50;fp=0.20;}
+  else{pp=0.30;cp=0.40;fp=0.30;}
+  var p=Math.round(cal*pp/4);
+  var c=Math.round(cal*cp/4);
+  var f=Math.round(cal*fp/9);
+  document.getElementById('mc_p').textContent=p+'g';
+  document.getElementById('mc_c').textContent=c+'g';
+  document.getElementById('mc_f').textContent=f+'g';
+  document.getElementById('mc_split').textContent='Split: '+Math.round(pp*100)+'% protein / '+Math.round(cp*100)+'% carbs / '+Math.round(fp*100)+'% fat';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Understanding Macros</h2>
+<p>Macronutrients — protein, carbohydrates, and fat — each provide calories and serve distinct roles. Protein (4 kcal/g) builds and repairs muscle. Carbohydrates (4 kcal/g) are the primary fuel for exercise. Fat (9 kcal/g) supports hormones and nutrient absorption.</p>
+<p>For fat loss, a higher protein ratio (35–40%) helps preserve muscle and increases satiety. For muscle gain, adequate carbohydrates (45–50%) support training performance and recovery. Adjust ratios based on your individual response and training style.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="tdee.html"><span class="dot"></span>TDEE</a></li>
+<li><a href="calorie-deficit.html"><span class="dot"></span>Calorie Deficit</a></li>
+<li><a href="macros.html"><span class="dot"></span>Macros</a></li>
+<li><a href="protein-intake.html"><span class="dot"></span>Protein</a></li>
+<li><a href="water-intake.html"><span class="dot"></span>Water Intake</a></li>
+<li><a href="muscle-gain-calories.html"><span class="dot"></span>Muscle Calories</a></li>
+<li><a href="weight-loss-timeline.html"><span class="dot"></span>Weight Loss Timeline</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Rate Zone Calculator — FitnessCalc</title>
+<meta name="description" content="Find your 5 training heart rate zones using the Karvonen method.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/heart-rate-zones.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Cardio<span>›</span>Heart Rate Zone Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Heart Rate Zone Calculator</h1>
+<p class="subtitle">Find your 5 training zones by age and resting heart rate.</p>
+<div class="form-row"><label>Age</label><input type="number" id="hr_age" placeholder="e.g. 30"></div>
+<div class="form-row"><label>Resting Heart Rate (bpm)</label><input type="number" id="hr_rhr" placeholder="e.g. 60"></div>
+<button class="calc-btn" onclick="calcHR()">Calculate Zones</button>
+<div class="result-box" id="result">
+  <div class="result-label">Your Heart Rate Zones (Karvonen Method)</div>
+  <div style="margin-top:14px" id="hr_zones"></div>
+</div>
+<script>
+var zoneNames=['Zone 1 — Recovery','Zone 2 — Aerobic Base','Zone 3 — Tempo','Zone 4 — Threshold','Zone 5 — Max Effort'];
+var zoneColors=['#6B7280','#10B981','#F59E0B','#F97316','#EF4444'];
+var zonePcts=[[0.50,0.60],[0.60,0.70],[0.70,0.80],[0.80,0.90],[0.90,1.00]];
+function calcHR(){
+  var age=parseFloat(document.getElementById('hr_age').value);
+  var rhr=parseFloat(document.getElementById('hr_rhr').value);
+  if(!age||!rhr)return alert('Please enter age and resting heart rate.');
+  var mhr=220-age;
+  var hrr=mhr-rhr;
+  var html='';
+  zonePcts.forEach(function(p,i){
+    var lo=Math.round(p[0]*hrr+rhr);
+    var hi=Math.round(p[1]*hrr+rhr);
+    var pct=Math.round((p[0]+p[1])/2*100);
+    html+=`<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--green-pale)">
+      <div style="width:10px;height:10px;border-radius:50%;background:${zoneColors[i]};flex-shrink:0"></div>
+      <div style="flex:1"><strong style="font-family:'Exo 2',sans-serif">${zoneNames[i]}</strong></div>
+      <div style="font-family:'Exo 2',sans-serif;font-weight:800;color:${zoneColors[i]}">${lo}–${hi} bpm</div>
+    </div>`;
+  });
+  html+=`<div style="margin-top:10px;font-size:0.85rem;color:var(--muted)">Max HR: ${mhr} bpm · HRR: ${hrr} bpm</div>`;
+  document.getElementById('hr_zones').innerHTML=html;
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Heart Rate Training Zones</h2>
+<p>The Karvonen method calculates training zones using Heart Rate Reserve (HRR = Max HR − Resting HR), which is more accurate than using max HR alone because it accounts for your fitness level. The formula: Target HR = (HRR × intensity%) + Resting HR.</p>
+<p>Zone 2 (aerobic base) is the most important zone for building endurance and fat-burning capacity. Elite endurance athletes spend 80% of their training time in Zone 2.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="calories-burned.html"><span class="dot"></span>Calories Burned</a></li>
+<li><a href="running-pace.html"><span class="dot"></span>Running Pace</a></li>
+<li><a href="heart-rate-zones.html"><span class="dot"></span>Heart Rate Zones</a></li>
+<li><a href="vo2-max.html"><span class="dot"></span>VO2 Max</a></li>
+<li><a href="walking-calories.html"><span class="dot"></span>Walking Calories</a></li>
+<li><a href="steps-calories.html"><span class="dot"></span>Steps→Calories</a></li>
+<li><a href="pushup-calories.html"><span class="dot"></span>Push-up Burn</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squat Max Calculator — FitnessCalc</title>
+<meta name="description" content="Squat 1RM and percentage-based training loads.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/squat-max.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Strength<span>›</span>Squat Max Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Squat Max Calculator</h1>
+<p class="subtitle">Squat 1RM and percentage-based training loads.</p>
+<div class="form-row"><label>Weight Lifted (lbs)</label><input type="number" id="lf_weight" placeholder="e.g. 185"></div>
+<div class="form-row"><label>Reps Performed</label>
+  <select id="lf_reps">
+    <option value="1">1 rep</option><option value="2">2 reps</option><option value="3">3 reps</option>
+    <option value="4">4 reps</option><option value="5" selected>5 reps</option><option value="6">6 reps</option>
+    <option value="7">7 reps</option><option value="8">8 reps</option><option value="10">10 reps</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcLF()">Calculate 1RM</button>
+<div class="result-box" id="result">
+  <div class="result-label">Estimated 1RM (Squat)</div>
+  <div class="result-main" id="lf_main">—</div>
+  <div id="lf_pcts"></div>
+</div>
+<script>
+function calcLF(){
+  var w=parseFloat(document.getElementById('lf_weight').value);
+  var r=parseFloat(document.getElementById('lf_reps').value);
+  if(!w)return alert('Please enter weight.');
+  var orm=r===1?w:w*(1+r/30);
+  orm=Math.round(orm);
+  document.getElementById('lf_main').textContent=orm+' lbs';
+  var pcts=[100,95,90,85,80,75,70,65,60,55,50];
+  var html='<table style="width:100%;font-size:0.88rem;border-collapse:collapse;margin-top:14px"><tr style="background:var(--green-pale)"><th style="padding:6px 10px;text-align:left;font-family:Exo 2,sans-serif">%</th><th style="padding:6px 10px;text-align:right;font-family:Exo 2,sans-serif">Weight</th><th style="padding:6px 10px;text-align:right;font-family:Exo 2,sans-serif">Rep Range</th></tr>';
+  var repRanges={100:'1',95:'2',90:'3',85:'4–5',80:'6–8',75:'8–10',70:'10–12',65:'12–15',60:'15–20',55:'20+',50:'20+'};
+  pcts.forEach(function(p){html+='<tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px">'+p+'%</td><td style="padding:5px 10px;text-align:right;font-weight:700">'+Math.round(orm*p/100)+' lbs</td><td style="padding:5px 10px;text-align:right;color:var(--muted)">~'+repRanges[p]+' reps</td></tr>';});
+  html+='</table>';
+  document.getElementById('lf_pcts').innerHTML=html;
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Squat Training Tips</h2>
+<p>Use the percentage table to build structured training programs. Common programs like 5/3/1 (Wendler) and Starting Strength use percentages of 1RM to autoregulate volume and intensity over training cycles.</p>
+<p>Always warm up properly before heavy lifting. Work up gradually: 50%, 70%, 85%, then your working sets. For 1RM testing, use a controlled testing day after a deload week for best results.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="one-rep-max.html"><span class="dot"></span>One Rep Max</a></li>
+<li><a href="bench-press.html"><span class="dot"></span>Bench Press</a></li>
+<li><a href="squat-max.html"><span class="dot"></span>Squat Max</a></li>
+<li><a href="deadlift-max.html"><span class="dot"></span>Deadlift Max</a></li>
+<li><a href="workout-volume.html"><span class="dot"></span>Workout Volume</a></li>
+<li><a href="sleep-calculator.html"><span class="dot"></span>Sleep Calculator</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calories Burned Calculator — FitnessCalc</title>
+<meta name="description" content="Estimate calories burned during common exercises using MET values.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/calories-burned.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Cardio<span>›</span>Calories Burned Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Calories Burned Calculator</h1>
+<p class="subtitle">MET-based estimates for common exercises.</p>
+<div class="form-row"><label>Body Weight (lbs)</label><input type="number" id="cb_weight" placeholder="e.g. 175"></div>
+<div class="form-row"><label>Exercise</label>
+  <select id="cb_exercise">
+    <option value="7.0">Running (6 mph)</option>
+    <option value="10.0">Running (8 mph)</option>
+    <option value="6.0">Cycling (moderate)</option>
+    <option value="8.0">Cycling (vigorous)</option>
+    <option value="5.5">Swimming (moderate)</option>
+    <option value="4.5">Elliptical (moderate)</option>
+    <option value="5.0">Jump Rope</option>
+    <option value="3.5">Weight Training (general)</option>
+    <option value="6.0">Circuit Training</option>
+    <option value="8.0">HIIT</option>
+    <option value="3.0">Yoga</option>
+    <option value="2.5">Walking (3 mph)</option>
+    <option value="3.8">Walking (4 mph)</option>
+    <option value="5.0">Hiking</option>
+    <option value="7.0">Basketball</option>
+    <option value="7.0">Soccer</option>
+  </select>
+</div>
+<div class="form-row"><label>Duration (minutes)</label><input type="number" id="cb_duration" placeholder="e.g. 45"></div>
+<button class="calc-btn" onclick="calcCB()">Calculate Calories Burned</button>
+<div class="result-box" id="result">
+  <div class="result-label">Calories Burned</div>
+  <div class="result-main" id="cb_main">—</div>
+  <div class="result-sub" id="cb_rate"></div>
+</div>
+<script>
+function calcCB(){
+  var w=parseFloat(document.getElementById('cb_weight').value);
+  var met=parseFloat(document.getElementById('cb_exercise').value);
+  var min=parseFloat(document.getElementById('cb_duration').value);
+  if(!w||!min)return alert('Please fill in all fields.');
+  var kg=w/2.205;
+  var cal=Math.round(met*kg*(min/60));
+  document.getElementById('cb_main').textContent=cal+' kcal';
+  document.getElementById('cb_rate').textContent=Math.round(cal/min*10)/10+' kcal/min • '+Math.round(cal/(min/60))+' kcal/hour';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>MET Values Explained</h2>
+<p>MET (Metabolic Equivalent of Task) is a measure of exercise intensity. A MET of 1 is the energy expenditure at rest. Running at 8 mph has a MET of ~10, meaning it burns 10× more energy than sitting still.</p>
+<p>Formula: Calories = MET × weight (kg) × time (hours). These are estimates — individual calorie burn varies based on fitness level, body composition, and effort.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="calories-burned.html"><span class="dot"></span>Calories Burned</a></li>
+<li><a href="running-pace.html"><span class="dot"></span>Running Pace</a></li>
+<li><a href="heart-rate-zones.html"><span class="dot"></span>Heart Rate Zones</a></li>
+<li><a href="vo2-max.html"><span class="dot"></span>VO2 Max</a></li>
+<li><a href="walking-calories.html"><span class="dot"></span>Walking Calories</a></li>
+<li><a href="steps-calories.html"><span class="dot"></span>Steps→Calories</a></li>
+<li><a href="pushup-calories.html"><span class="dot"></span>Push-up Burn</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

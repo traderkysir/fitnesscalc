@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protein Intake Calculator — FitnessCalc</title>
+<meta name="description" content="Find your ideal daily protein target for your weight and training goal.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/protein-intake.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Nutrition<span>›</span>Protein Intake Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Protein Intake Calculator</h1>
+<p class="subtitle">Daily protein target based on body weight and training goal.</p>
+<div class="form-row"><label>Body Weight (lbs)</label><input type="number" id="pi_weight" placeholder="e.g. 175"></div>
+<div class="form-row"><label>Training Goal</label>
+  <select id="pi_goal">
+    <option value="0.7">Sedentary / General Health (0.7g/lb)</option>
+    <option value="0.8">Light Exercise / Toning (0.8g/lb)</option>
+    <option value="1.0" selected>Moderate Training / Fat Loss (1.0g/lb)</option>
+    <option value="1.2">Strength Training / Muscle Gain (1.2g/lb)</option>
+    <option value="1.4">Heavy Lifting / Lean Bulk (1.4g/lb)</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcPI()">Calculate Protein</button>
+<div class="result-box" id="result">
+  <div class="result-label">Daily Protein Target</div>
+  <div class="result-main" id="pi_main">—</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="val" id="pi_min">—</div><div class="lbl">Minimum (0.7g/lb)</div></div>
+    <div class="result-item"><div class="val" id="pi_max">—</div><div class="lbl">Upper (1.4g/lb)</div></div>
+  </div>
+  <div class="result-sub" id="pi_cal"></div>
+</div>
+<script>
+function calcPI(){
+  var w=parseFloat(document.getElementById('pi_weight').value);
+  var r=parseFloat(document.getElementById('pi_goal').value);
+  if(!w)return alert('Please enter body weight.');
+  var target=Math.round(w*r);
+  document.getElementById('pi_main').textContent=target+'g / day';
+  document.getElementById('pi_min').textContent=Math.round(w*0.7)+'g';
+  document.getElementById('pi_max').textContent=Math.round(w*1.4)+'g';
+  document.getElementById('pi_cal').textContent='Protein calories: '+target*4+' kcal/day';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>How Much Protein Do You Need?</h2>
+<p>The RDA for protein is 0.36g per pound of body weight, but this minimum is not optimal for active individuals. Research consistently shows that 0.7–1.0g/lb is the sweet spot for preserving muscle during a caloric deficit, while 1.0–1.4g/lb supports maximum muscle protein synthesis during training phases.</p>
+<p>Spreading protein intake across 3–5 meals per day maximizes muscle protein synthesis, with 30–40g per meal being an effective dose for most adults.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="tdee.html"><span class="dot"></span>TDEE</a></li>
+<li><a href="calorie-deficit.html"><span class="dot"></span>Calorie Deficit</a></li>
+<li><a href="macros.html"><span class="dot"></span>Macros</a></li>
+<li><a href="protein-intake.html"><span class="dot"></span>Protein</a></li>
+<li><a href="water-intake.html"><span class="dot"></span>Water Intake</a></li>
+<li><a href="muscle-gain-calories.html"><span class="dot"></span>Muscle Calories</a></li>
+<li><a href="weight-loss-timeline.html"><span class="dot"></span>Weight Loss Timeline</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

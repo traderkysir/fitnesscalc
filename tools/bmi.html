@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator — FitnessCalc</title>
+<meta name="description" content="Calculate your Body Mass Index with the standard WHO formula.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/bmi.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Body Composition<span>›</span>BMI Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>BMI Calculator</h1>
+<p class="subtitle">Body Mass Index using the standard WHO formula.</p>
+<div class="toggle-row">
+  <button class="toggle-btn active" data-unit="imperial" onclick="setUnit('imperial',this)">Imperial (lb/in)</button>
+  <button class="toggle-btn" data-unit="metric" onclick="setUnit('metric',this)">Metric (kg/cm)</button>
+</div>
+<div id="imp">
+  <div class="form-row"><label>Weight (lbs)</label><input type="number" id="weight_imp" placeholder="e.g. 175"></div>
+  <div class="form-row"><label>Height (feet)</label><input type="number" id="height_ft" placeholder="5"></div>
+  <div class="form-row"><label>Height (inches)</label><input type="number" id="height_in" placeholder="10"></div>
+</div>
+<div id="met" class="hidden">
+  <div class="form-row"><label>Weight (kg)</label><input type="number" id="weight_kg" placeholder="e.g. 80"></div>
+  <div class="form-row"><label>Height (cm)</label><input type="number" id="height_cm" placeholder="e.g. 178"></div>
+</div>
+<button class="calc-btn" onclick="calcBMI()">Calculate BMI</button>
+<div class="result-box" id="result">
+  <div class="result-label">Your BMI</div>
+  <div class="result-main" id="bmi_val">—</div>
+  <div class="result-sub" id="bmi_cat"></div>
+  <div class="result-grid" style="margin-top:16px">
+    <div class="result-item"><div class="val">< 18.5</div><div class="lbl">Underweight</div></div>
+    <div class="result-item"><div class="val">18.5 – 24.9</div><div class="lbl">Normal</div></div>
+    <div class="result-item"><div class="val">25 – 29.9</div><div class="lbl">Overweight</div></div>
+    <div class="result-item"><div class="val">≥ 30</div><div class="lbl">Obese</div></div>
+  </div>
+</div>
+<script>
+var unit='imperial';
+function setUnit(u,btn){unit=u;document.getElementById('imp').classList.toggle('hidden',u==='metric');document.getElementById('met').classList.toggle('hidden',u==='imperial');}
+function calcBMI(){
+  var bmi;
+  if(unit==='imperial'){
+    var w=parseFloat(document.getElementById('weight_imp').value);
+    var ft=parseFloat(document.getElementById('height_ft').value)||0;
+    var inch=parseFloat(document.getElementById('height_in').value)||0;
+    var totalIn=(ft*12)+inch;
+    if(!w||!totalIn)return alert('Please enter weight and height.');
+    bmi=(703*w)/(totalIn*totalIn);
+  } else {
+    var w=parseFloat(document.getElementById('weight_kg').value);
+    var h=parseFloat(document.getElementById('height_cm').value)/100;
+    if(!w||!h)return alert('Please enter weight and height.');
+    bmi=w/(h*h);
+  }
+  bmi=Math.round(bmi*10)/10;
+  var cat=bmi<18.5?'Underweight':bmi<25?'Normal weight':bmi<30?'Overweight':'Obese';
+  document.getElementById('bmi_val').textContent=bmi;
+  document.getElementById('bmi_cat').textContent='Category: '+cat;
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>What is BMI?</h2>
+<p>Body Mass Index (BMI) is a screening tool that estimates whether a person has a healthy weight for their height. It is calculated by dividing weight in kilograms by height in meters squared (kg/m²). While BMI is widely used, it has limitations — it does not account for muscle mass, bone density, or fat distribution. Athletes often have high BMIs despite low body fat.</p>
+<p>BMI is best used as one data point among many when assessing overall health.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="bmi.html"><span class="dot"></span>BMI</a></li>
+<li><a href="body-fat.html"><span class="dot"></span>Body Fat %</a></li>
+<li><a href="ideal-weight.html"><span class="dot"></span>Ideal Weight</a></li>
+<li><a href="lean-mass.html"><span class="dot"></span>Lean Mass</a></li>
+<li><a href="fitness-age.html"><span class="dot"></span>Fitness Age</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

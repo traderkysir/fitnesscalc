@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lean Body Mass Calculator — FitnessCalc</title>
+<meta name="description" content="Calculate your lean body mass and fat mass using the Boer formula.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/lean-mass.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Body Composition<span>›</span>Lean Body Mass Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Lean Body Mass Calculator</h1>
+<p class="subtitle">Estimate your fat-free mass using the Boer formula.</p>
+<div class="form-row"><label>Gender</label>
+  <select id="lm_gender"><option value="m">Male</option><option value="f">Female</option></select>
+</div>
+<div class="form-row"><label>Weight (lbs)</label><input type="number" id="lm_weight" placeholder="e.g. 175"></div>
+<div class="form-row"><label>Height (inches)</label><input type="number" id="lm_height" placeholder="e.g. 70"></div>
+<button class="calc-btn" onclick="calcLM()">Calculate Lean Mass</button>
+<div class="result-box" id="result">
+  <div class="result-label">Estimated Lean Body Mass</div>
+  <div class="result-main" id="lm_main">—</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="val" id="lm_fat">—</div><div class="lbl">Fat Mass</div></div>
+    <div class="result-item"><div class="val" id="lm_pct">—</div><div class="lbl">Fat %</div></div>
+  </div>
+</div>
+<script>
+function calcLM(){
+  var g=document.getElementById('lm_gender').value;
+  var lbs=parseFloat(document.getElementById('lm_weight').value);
+  var inches=parseFloat(document.getElementById('lm_height').value);
+  if(!lbs||!inches)return alert('Please fill in all fields.');
+  var kg=lbs/2.205; var cm=inches*2.54;
+  var lbm;
+  if(g==='m') lbm=0.407*kg+0.267*cm-19.2;
+  else lbm=0.252*kg+0.473*cm-48.3;
+  var lbm_lbs=Math.round(lbm*2.205*10)/10;
+  var fat_lbs=Math.round((lbs-lbm_lbs)*10)/10;
+  var fat_pct=Math.round((fat_lbs/lbs)*1000)/10;
+  document.getElementById('lm_main').textContent=lbm_lbs+' lbs';
+  document.getElementById('lm_fat').textContent=fat_lbs+' lbs';
+  document.getElementById('lm_pct').textContent=fat_pct+'%';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>What is Lean Body Mass?</h2>
+<p>Lean body mass (LBM) is the weight of everything in your body except fat: muscle, bone, organs, water, and connective tissue. It is a better predictor of metabolic rate and athletic performance than total body weight.</p>
+<p>This calculator uses the Boer formula, which is accurate within ±3–4% for most adults. For more precise measurements, methods like DEXA scanning or underwater weighing can be used.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="bmi.html"><span class="dot"></span>BMI</a></li>
+<li><a href="body-fat.html"><span class="dot"></span>Body Fat %</a></li>
+<li><a href="ideal-weight.html"><span class="dot"></span>Ideal Weight</a></li>
+<li><a href="lean-mass.html"><span class="dot"></span>Lean Mass</a></li>
+<li><a href="fitness-age.html"><span class="dot"></span>Fitness Age</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

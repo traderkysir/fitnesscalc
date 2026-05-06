@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VO2 Max Estimator — FitnessCalc</title>
+<meta name="description" content="Estimate your VO2 max from resting heart rate and age.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/vo2-max.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Cardio<span>›</span>VO2 Max Estimator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>VO2 Max Estimator</h1>
+<p class="subtitle">Estimate aerobic capacity from resting heart rate and age.</p>
+<div class="form-row"><label>Age</label><input type="number" id="v2_age" placeholder="e.g. 30"></div>
+<div class="form-row"><label>Gender</label>
+  <select id="v2_gender"><option value="m">Male</option><option value="f">Female</option></select>
+</div>
+<div class="form-row"><label>Resting Heart Rate (bpm)</label><input type="number" id="v2_rhr" placeholder="e.g. 60"></div>
+<button class="calc-btn" onclick="calcV2()">Estimate VO2 Max</button>
+<div class="result-box" id="result">
+  <div class="result-label">Estimated VO2 Max</div>
+  <div class="result-main" id="v2_main">—</div>
+  <div class="result-sub" id="v2_cat"></div>
+</div>
+<script>
+function calcV2(){
+  var age=parseFloat(document.getElementById('v2_age').value);
+  var rhr=parseFloat(document.getElementById('v2_rhr').value);
+  var g=document.getElementById('v2_gender').value;
+  if(!age||!rhr)return alert('Please fill in all fields.');
+  var mhr=220-age;
+  var vo2=15*(mhr/rhr);
+  vo2=Math.round(vo2*10)/10;
+  var cat,table;
+  if(g==='m'){
+    if(vo2>55)cat='Superior';else if(vo2>49)cat='Excellent';else if(vo2>43)cat='Good';else if(vo2>37)cat='Fair';else cat='Poor';
+  } else {
+    if(vo2>49)cat='Superior';else if(vo2>43)cat='Excellent';else if(vo2>37)cat='Good';else if(vo2>31)cat='Fair';else cat='Poor';
+  }
+  document.getElementById('v2_main').textContent=vo2+' mL/kg/min';
+  document.getElementById('v2_cat').textContent='Category: '+cat+' (adjusted for age '+age+')';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>What is VO2 Max?</h2>
+<p>VO2 max is the maximum rate at which your body can consume oxygen during intense exercise. It is the gold standard measure of cardiovascular fitness. Higher VO2 max is associated with longer lifespan and better athletic performance.</p>
+<p>This calculator uses the Uth-Sørensen-Overgaard-Pedersen formula (15 × HRmax/HRrest), which gives a reliable estimate for most adults. For a more precise measurement, a graded exercise test with metabolic analysis is required.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="calories-burned.html"><span class="dot"></span>Calories Burned</a></li>
+<li><a href="running-pace.html"><span class="dot"></span>Running Pace</a></li>
+<li><a href="heart-rate-zones.html"><span class="dot"></span>Heart Rate Zones</a></li>
+<li><a href="vo2-max.html"><span class="dot"></span>VO2 Max</a></li>
+<li><a href="walking-calories.html"><span class="dot"></span>Walking Calories</a></li>
+<li><a href="steps-calories.html"><span class="dot"></span>Steps→Calories</a></li>
+<li><a href="pushup-calories.html"><span class="dot"></span>Push-up Burn</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

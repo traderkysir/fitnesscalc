@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steps to Calories Calculator — FitnessCalc</title>
+<meta name="description" content="Convert your daily step count to approximate calories burned.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/steps-calories.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Cardio<span>›</span>Steps to Calories Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Steps to Calories Calculator</h1>
+<p class="subtitle">Convert daily step count to approximate calories burned.</p>
+<div class="form-row"><label>Body Weight (lbs)</label><input type="number" id="sc_weight" placeholder="e.g. 160"></div>
+<div class="form-row"><label>Daily Steps</label><input type="number" id="sc_steps" placeholder="e.g. 8000"></div>
+<div class="form-row"><label>Typical Walking Speed</label>
+  <select id="sc_speed">
+    <option value="slow">Slow (2.5 mph)</option>
+    <option value="moderate" selected>Moderate (3.0 mph)</option>
+    <option value="brisk">Brisk (3.5 mph)</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcSC()">Calculate Calories</button>
+<div class="result-box" id="result">
+  <div class="result-label">Calories Burned from Steps</div>
+  <div class="result-main" id="sc_main">—</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="val" id="sc_miles">—</div><div class="lbl">Approx. Miles</div></div>
+    <div class="result-item"><div class="val" id="sc_active">—</div><div class="lbl">Active Minutes</div></div>
+  </div>
+</div>
+<script>
+function calcSC(){
+  var w=parseFloat(document.getElementById('sc_weight').value);
+  var steps=parseFloat(document.getElementById('sc_steps').value);
+  var speed=document.getElementById('sc_speed').value;
+  if(!w||!steps)return alert('Please fill in all fields.');
+  var stride={slow:2.2,moderate:2.5,brisk:2.8}[speed];
+  var miles=steps*stride/5280;
+  var mph={slow:2.5,moderate:3.0,brisk:3.5}[speed];
+  var met={slow:2.9,moderate:3.5,brisk:4.3}[speed];
+  var hours=miles/mph;
+  var cal=Math.round(met*(w/2.205)*hours);
+  document.getElementById('sc_main').textContent=cal+' kcal';
+  document.getElementById('sc_miles').textContent=Math.round(miles*100)/100;
+  document.getElementById('sc_active').textContent=Math.round(hours*60)+' min';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>How Many Steps Should You Take?</h2>
+<p>The popular goal of 10,000 steps/day originated from a Japanese marketing campaign in the 1960s, but research supports it as a reasonable health target. Studies show significant health benefits between 7,000–9,000 steps/day, with diminishing returns above 12,000.</p>
+<p>One mile is approximately 2,000–2,500 steps depending on stride length and height. Calories per step range from 0.03–0.06 kcal depending on body weight and pace.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="calories-burned.html"><span class="dot"></span>Calories Burned</a></li>
+<li><a href="running-pace.html"><span class="dot"></span>Running Pace</a></li>
+<li><a href="heart-rate-zones.html"><span class="dot"></span>Heart Rate Zones</a></li>
+<li><a href="vo2-max.html"><span class="dot"></span>VO2 Max</a></li>
+<li><a href="walking-calories.html"><span class="dot"></span>Walking Calories</a></li>
+<li><a href="steps-calories.html"><span class="dot"></span>Steps→Calories</a></li>
+<li><a href="pushup-calories.html"><span class="dot"></span>Push-up Burn</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Age Estimator — FitnessCalc</title>
+<meta name="description" content="Estimate your biological fitness age from resting heart rate, exercise, and BMI.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/fitness-age.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Body Composition<span>›</span>Fitness Age Estimator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Fitness Age Estimator</h1>
+<p class="subtitle">Estimate your biological fitness age from key health metrics.</p>
+<div class="form-row"><label>Chronological Age</label><input type="number" id="fa_age" placeholder="e.g. 35"></div>
+<div class="form-row"><label>Resting Heart Rate (bpm)</label><input type="number" id="fa_rhr" placeholder="e.g. 62"></div>
+<div class="form-row"><label>Weekly Exercise (hours)</label><input type="number" id="fa_exercise" step="0.5" placeholder="e.g. 4"></div>
+<div class="form-row"><label>BMI (or 0 to skip)</label><input type="number" id="fa_bmi" placeholder="e.g. 23" step="0.1"></div>
+<button class="calc-btn" onclick="calcFA()">Estimate Fitness Age</button>
+<div class="result-box" id="result">
+  <div class="result-label">Estimated Fitness Age</div>
+  <div class="result-main" id="fa_main">—</div>
+  <div class="result-sub" id="fa_diff"></div>
+</div>
+<script>
+function calcFA(){
+  var age=parseFloat(document.getElementById('fa_age').value);
+  var rhr=parseFloat(document.getElementById('fa_rhr').value);
+  var ex=parseFloat(document.getElementById('fa_exercise').value)||0;
+  var bmi=parseFloat(document.getElementById('fa_bmi').value)||22;
+  if(!age||!rhr)return alert('Please enter age and resting heart rate.');
+  var adj=0;
+  if(rhr<55)adj-=5;else if(rhr<65)adj-=2;else if(rhr>75)adj+=3;else if(rhr>85)adj+=6;
+  if(ex>=5)adj-=5;else if(ex>=3)adj-=3;else if(ex>=1)adj-=1;else adj+=4;
+  if(bmi<18.5)adj+=2;else if(bmi<25)adj-=1;else if(bmi>=30)adj+=5;else if(bmi>=25)adj+=2;
+  var fitAge=Math.round(age+adj);
+  var diff=fitAge-age;
+  document.getElementById('fa_main').textContent=fitAge+' years';
+  document.getElementById('fa_diff').textContent=diff===0?'Same as your chronological age.':diff<0?Math.abs(diff)+' years younger than your chronological age 🎉':diff+' years older than your chronological age. Regular exercise can help.';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>About Fitness Age</h2>
+<p>Fitness age is an estimate of your cardiovascular health relative to your chronological age. A lower fitness age is associated with longer lifespan and reduced risk of chronic disease. Research from the Norwegian University of Science and Technology shows VO2 max is the strongest predictor of fitness age.</p>
+<p>This simplified estimator uses resting heart rate, exercise frequency, and BMI as proxies. For a more precise fitness age, a VO2 max test with a sports medicine professional is recommended.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="bmi.html"><span class="dot"></span>BMI</a></li>
+<li><a href="body-fat.html"><span class="dot"></span>Body Fat %</a></li>
+<li><a href="ideal-weight.html"><span class="dot"></span>Ideal Weight</a></li>
+<li><a href="lean-mass.html"><span class="dot"></span>Lean Mass</a></li>
+<li><a href="fitness-age.html"><span class="dot"></span>Fitness Age</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

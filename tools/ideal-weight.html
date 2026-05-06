@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ideal Body Weight Calculator — FitnessCalc</title>
+<meta name="description" content="Find your ideal weight range using Hamwi, Devine, and other formulas.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/ideal-weight.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Body Composition<span>›</span>Ideal Body Weight Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Ideal Body Weight Calculator</h1>
+<p class="subtitle">Multiple formulas including Hamwi, Devine, and Robinson.</p>
+<div class="form-row"><label>Gender</label>
+  <select id="iw_gender"><option value="m">Male</option><option value="f">Female</option></select>
+</div>
+<div class="toggle-row">
+  <button class="toggle-btn active" onclick="setIWUnit('imperial',this)">Imperial (ft/in)</button>
+  <button class="toggle-btn" onclick="setIWUnit('metric',this)">Metric (cm)</button>
+</div>
+<div id="iw_imp">
+  <div class="form-row"><label>Height (feet)</label><input type="number" id="iw_ft" placeholder="5"></div>
+  <div class="form-row"><label>Height (inches)</label><input type="number" id="iw_in" placeholder="10"></div>
+</div>
+<div id="iw_met" class="hidden">
+  <div class="form-row"><label>Height (cm)</label><input type="number" id="iw_cm" placeholder="178"></div>
+</div>
+<button class="calc-btn" onclick="calcIW()">Calculate Ideal Weight</button>
+<div class="result-box" id="result">
+  <div class="result-label">Ideal Weight Range (Hamwi)</div>
+  <div class="result-main" id="iw_main">—</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="val" id="iw_hamwi">—</div><div class="lbl">Hamwi</div></div>
+    <div class="result-item"><div class="val" id="iw_devine">—</div><div class="lbl">Devine</div></div>
+    <div class="result-item"><div class="val" id="iw_robinson">—</div><div class="lbl">Robinson</div></div>
+    <div class="result-item"><div class="val" id="iw_miller">—</div><div class="lbl">Miller</div></div>
+  </div>
+</div>
+<script>
+var iwUnit='imperial';
+function setIWUnit(u,btn){iwUnit=u;document.getElementById('iw_imp').classList.toggle('hidden',u==='metric');document.getElementById('iw_met').classList.toggle('hidden',u==='imperial');}
+function calcIW(){
+  var g=document.getElementById('iw_gender').value;
+  var cm;
+  if(iwUnit==='imperial'){
+    var ft=parseFloat(document.getElementById('iw_ft').value)||0;
+    var inch=parseFloat(document.getElementById('iw_in').value)||0;
+    cm=(ft*12+inch)*2.54;
+  } else { cm=parseFloat(document.getElementById('iw_cm').value); }
+  if(!cm)return alert('Please enter height.');
+  var inchOver=((cm/2.54)-60);
+  var hamwi,devine,robinson,miller;
+  if(g==='m'){hamwi=48+(2.7*inchOver);devine=50+(2.3*inchOver);robinson=52+(1.9*inchOver);miller=56.2+(1.41*inchOver);}
+  else{hamwi=45.5+(2.2*inchOver);devine=45.5+(2.3*inchOver);robinson=49+(1.7*inchOver);miller=53.1+(1.36*inchOver);}
+  function kgLbs(kg){return Math.round(kg*2.205)+'lb ('+Math.round(kg)+'kg)';}
+  document.getElementById('iw_main').textContent=kgLbs(hamwi);
+  document.getElementById('iw_hamwi').textContent=kgLbs(hamwi);
+  document.getElementById('iw_devine').textContent=kgLbs(devine);
+  document.getElementById('iw_robinson').textContent=kgLbs(robinson);
+  document.getElementById('iw_miller').textContent=kgLbs(miller);
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Ideal Weight Formulas</h2>
+<p>There is no single universally accepted formula for ideal body weight. This calculator shows four widely used formulas: Hamwi (1964), Devine (1974), Robinson (1983), and Miller (1983). The results are guidelines, not prescriptions.</p>
+<p>Body composition, muscle mass, and overall health are far more meaningful measures than any single target weight number. Use these ranges as a starting point for conversations with your healthcare provider.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="bmi.html"><span class="dot"></span>BMI</a></li>
+<li><a href="body-fat.html"><span class="dot"></span>Body Fat %</a></li>
+<li><a href="ideal-weight.html"><span class="dot"></span>Ideal Weight</a></li>
+<li><a href="lean-mass.html"><span class="dot"></span>Lean Mass</a></li>
+<li><a href="fitness-age.html"><span class="dot"></span>Fitness Age</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

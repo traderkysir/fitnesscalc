@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Body Fat % Calculator — FitnessCalc</title>
+<meta name="description" content="Estimate body fat percentage using the U.S. Navy circumference method.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/body-fat.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Body Composition<span>›</span>Body Fat % Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Body Fat % Calculator</h1>
+<p class="subtitle">U.S. Navy circumference method — no calipers needed.</p>
+<div class="form-row"><label>Gender</label>
+  <select id="bf_gender">
+    <option value="m">Male</option>
+    <option value="f">Female</option>
+  </select>
+</div>
+<div class="form-row"><label>Height (inches)</label><input type="number" id="bf_height" placeholder="e.g. 70"></div>
+<div class="form-row"><label>Neck circumference (inches)</label><input type="number" id="bf_neck" placeholder="e.g. 15.5" step="0.1"></div>
+<div class="form-row"><label>Waist circumference (inches)</label><input type="number" id="bf_waist" placeholder="e.g. 34" step="0.1"></div>
+<div id="bf_hip_row" class="form-row hidden"><label>Hip circumference (inches)</label><input type="number" id="bf_hip" placeholder="e.g. 38" step="0.1"></div>
+<button class="calc-btn" onclick="calcBF()">Calculate Body Fat</button>
+<div class="result-box" id="result">
+  <div class="result-label">Estimated Body Fat</div>
+  <div class="result-main" id="bf_val">—</div>
+  <div class="result-sub" id="bf_cat"></div>
+</div>
+<script>
+document.getElementById('bf_gender').addEventListener('change',function(){
+  document.getElementById('bf_hip_row').classList.toggle('hidden',this.value==='m');
+});
+function calcBF(){
+  var g=document.getElementById('bf_gender').value;
+  var h=parseFloat(document.getElementById('bf_height').value);
+  var neck=parseFloat(document.getElementById('bf_neck').value);
+  var waist=parseFloat(document.getElementById('bf_waist').value);
+  if(!h||!neck||!waist)return alert('Please fill in all fields.');
+  var bf;
+  if(g==='m'){
+    bf=86.010*Math.log10(waist-neck)-70.041*Math.log10(h)+36.76;
+  } else {
+    var hip=parseFloat(document.getElementById('bf_hip').value);
+    if(!hip)return alert('Please enter hip measurement.');
+    bf=163.205*Math.log10(waist+hip-neck)-97.684*Math.log10(h)-78.387;
+  }
+  bf=Math.round(bf*10)/10;
+  var cat;
+  if(g==='m'){cat=bf<6?'Essential Fat':bf<14?'Athletes':bf<18?'Fitness':bf<25?'Acceptable':'Obese';}
+  else{cat=bf<14?'Essential Fat':bf<21?'Athletes':bf<25?'Fitness':bf<32?'Acceptable':'Obese';}
+  document.getElementById('bf_val').textContent=bf+'%';
+  document.getElementById('bf_cat').textContent='Category: '+cat;
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>U.S. Navy Method</h2>
+<p>This calculator uses the U.S. Navy circumference method, which estimates body fat percentage from waist, neck, and (for women) hip measurements. Studies show it to be accurate within 3–4% compared to DEXA scans for most people.</p>
+<p>Measure at the narrowest point for waist, around the Adam's apple for neck, and at the widest point for hips. Take measurements in the morning for best consistency.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="bmi.html"><span class="dot"></span>BMI</a></li>
+<li><a href="body-fat.html"><span class="dot"></span>Body Fat %</a></li>
+<li><a href="ideal-weight.html"><span class="dot"></span>Ideal Weight</a></li>
+<li><a href="lean-mass.html"><span class="dot"></span>Lean Mass</a></li>
+<li><a href="fitness-age.html"><span class="dot"></span>Fitness Age</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

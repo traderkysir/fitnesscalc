@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Intake Calculator — FitnessCalc</title>
+<meta name="description" content="Calculate daily water intake based on weight, activity, and climate.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/water-intake.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Nutrition<span>›</span>Water Intake Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Water Intake Calculator</h1>
+<p class="subtitle">Daily hydration target based on weight, activity, and climate.</p>
+<div class="form-row"><label>Body Weight (lbs)</label><input type="number" id="wi_weight" placeholder="e.g. 175"></div>
+<div class="form-row"><label>Activity Level</label>
+  <select id="wi_act">
+    <option value="1.0">Sedentary</option>
+    <option value="1.15" selected>Lightly Active</option>
+    <option value="1.3">Moderately Active</option>
+    <option value="1.45">Very Active / Athlete</option>
+  </select>
+</div>
+<div class="form-row"><label>Climate</label>
+  <select id="wi_climate">
+    <option value="1.0" selected>Temperate</option>
+    <option value="1.1">Hot / Humid</option>
+    <option value="0.95">Cold / Dry</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcWI()">Calculate Water Intake</button>
+<div class="result-box" id="result">
+  <div class="result-label">Daily Water Target</div>
+  <div class="result-main" id="wi_main">—</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="val" id="wi_oz">—</div><div class="lbl">Fluid Ounces</div></div>
+    <div class="result-item"><div class="val" id="wi_cups">—</div><div class="lbl">8 oz Cups</div></div>
+  </div>
+</div>
+<script>
+function calcWI(){
+  var w=parseFloat(document.getElementById('wi_weight').value);
+  var act=parseFloat(document.getElementById('wi_act').value);
+  var clim=parseFloat(document.getElementById('wi_climate').value);
+  if(!w)return alert('Please enter body weight.');
+  var oz=Math.round((w*0.5)*act*clim);
+  var liters=Math.round(oz*0.02957*10)/10;
+  document.getElementById('wi_main').textContent=liters+' liters';
+  document.getElementById('wi_oz').textContent=oz+' oz';
+  document.getElementById('wi_cups').textContent=Math.round(oz/8)+' cups';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>How Much Water Should You Drink?</h2>
+<p>A commonly used baseline is 0.5 oz of water per pound of body weight per day. Activity level and climate significantly affect this number — athletes exercising in hot weather may need double the baseline amount.</p>
+<p>Signs of mild dehydration include fatigue, headache, and reduced exercise performance. Thirst is a reliable indicator for most people, but older adults and those exercising intensely should drink proactively. Coffee, tea, and food also contribute to daily fluid intake.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="tdee.html"><span class="dot"></span>TDEE</a></li>
+<li><a href="calorie-deficit.html"><span class="dot"></span>Calorie Deficit</a></li>
+<li><a href="macros.html"><span class="dot"></span>Macros</a></li>
+<li><a href="protein-intake.html"><span class="dot"></span>Protein</a></li>
+<li><a href="water-intake.html"><span class="dot"></span>Water Intake</a></li>
+<li><a href="muscle-gain-calories.html"><span class="dot"></span>Muscle Calories</a></li>
+<li><a href="weight-loss-timeline.html"><span class="dot"></span>Weight Loss Timeline</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

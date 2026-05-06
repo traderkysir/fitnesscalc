@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Push-up Calorie Burn Calculator — FitnessCalc</title>
+<meta name="description" content="Estimate calories burned doing push-ups by reps and body weight.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/pushup-calories.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Cardio<span>›</span>Push-up Calorie Burn Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Push-up Calorie Burn</h1>
+<p class="subtitle">Calories burned doing push-ups based on reps and body weight.</p>
+<div class="form-row"><label>Body Weight (lbs)</label><input type="number" id="pu_weight" placeholder="e.g. 175"></div>
+<div class="form-row"><label>Number of Push-ups</label><input type="number" id="pu_reps" placeholder="e.g. 50"></div>
+<div class="form-row"><label>Pace</label>
+  <select id="pu_pace">
+    <option value="slow">Slow / Controlled</option>
+    <option value="moderate" selected>Moderate</option>
+    <option value="fast">Fast / AMRAP</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcPU()">Calculate Calories</button>
+<div class="result-box" id="result">
+  <div class="result-label">Calories Burned</div>
+  <div class="result-main" id="pu_main">—</div>
+  <div class="result-sub" id="pu_sub"></div>
+</div>
+<script>
+function calcPU(){
+  var w=parseFloat(document.getElementById('pu_weight').value);
+  var reps=parseFloat(document.getElementById('pu_reps').value);
+  var pace=document.getElementById('pu_pace').value;
+  if(!w||!reps)return alert('Please fill in all fields.');
+  var repsPerMin={slow:15,moderate:25,fast:40}[pace];
+  var met={slow:3.5,moderate:4.5,fast:6.0}[pace];
+  var mins=reps/repsPerMin;
+  var cal=Math.round(met*(w/2.205)*(mins/60)*10)/10;
+  document.getElementById('pu_main').textContent=cal+' kcal';
+  document.getElementById('pu_sub').textContent=Math.round(mins*10)/10+' minutes of activity at MET '+met;
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Push-ups and Calorie Burn</h2>
+<p>Push-ups are primarily a strength exercise, not a significant calorie-burning activity on their own. A set of 50 push-ups for an average person burns roughly 30–50 calories. Their real value is building upper body strength (chest, shoulders, triceps) and core stability.</p>
+<p>For calorie burning, combine push-ups with higher-MET activities like running or HIIT. Push-ups in a circuit format with minimal rest can elevate heart rate enough to approach moderate aerobic intensity.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="calories-burned.html"><span class="dot"></span>Calories Burned</a></li>
+<li><a href="running-pace.html"><span class="dot"></span>Running Pace</a></li>
+<li><a href="heart-rate-zones.html"><span class="dot"></span>Heart Rate Zones</a></li>
+<li><a href="vo2-max.html"><span class="dot"></span>VO2 Max</a></li>
+<li><a href="walking-calories.html"><span class="dot"></span>Walking Calories</a></li>
+<li><a href="steps-calories.html"><span class="dot"></span>Steps→Calories</a></li>
+<li><a href="pushup-calories.html"><span class="dot"></span>Push-up Burn</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

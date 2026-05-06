@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Running Pace Calculator — FitnessCalc</title>
+<meta name="description" content="Calculate your running pace, finish time, or distance for any run.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/running-pace.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Cardio<span>›</span>Running Pace Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Running Pace Calculator</h1>
+<p class="subtitle">Calculate pace, time, or distance for any run.</p>
+<div class="form-row"><label>Solve For</label>
+  <select id="rp_solve" onchange="rpToggle()">
+    <option value="pace">Pace (from distance + time)</option>
+    <option value="time">Time (from distance + pace)</option>
+    <option value="distance">Distance (from time + pace)</option>
+  </select>
+</div>
+<div id="rp_dist_row" class="form-row"><label>Distance (miles)</label><input type="number" id="rp_dist" step="0.01" placeholder="e.g. 5"></div>
+<div id="rp_time_row" class="form-row">
+  <label>Total Time</label>
+  <div style="display:flex;gap:8px">
+    <input type="number" id="rp_hours" placeholder="hh" style="width:33%">
+    <input type="number" id="rp_mins" placeholder="mm" style="width:33%">
+    <input type="number" id="rp_secs" placeholder="ss" style="width:33%">
+  </div>
+</div>
+<div id="rp_pace_row" class="form-row hidden">
+  <label>Pace (min:sec per mile)</label>
+  <div style="display:flex;gap:8px">
+    <input type="number" id="rp_pace_min" placeholder="min" style="width:50%">
+    <input type="number" id="rp_pace_sec" placeholder="sec" style="width:50%">
+  </div>
+</div>
+<button class="calc-btn" onclick="calcRP()">Calculate</button>
+<div class="result-box" id="result">
+  <div class="result-label" id="rp_label">Result</div>
+  <div class="result-main" id="rp_main">—</div>
+  <div class="result-sub" id="rp_sub"></div>
+</div>
+<script>
+function rpToggle(){
+  var v=document.getElementById('rp_solve').value;
+  document.getElementById('rp_dist_row').classList.toggle('hidden',v==='distance');
+  document.getElementById('rp_time_row').classList.toggle('hidden',v==='time');
+  document.getElementById('rp_pace_row').classList.toggle('hidden',v==='pace');
+}
+function fmtTime(totalSecs){
+  var h=Math.floor(totalSecs/3600);
+  var m=Math.floor((totalSecs%3600)/60);
+  var s=Math.round(totalSecs%60);
+  return (h?h+'h ':'')+m+'m '+s+'s';
+}
+function fmtPace(secsPerMile){
+  var m=Math.floor(secsPerMile/60);
+  var s=Math.round(secsPerMile%60);
+  return m+':'+(s<10?'0':'')+s+' /mile';
+}
+function calcRP(){
+  var v=document.getElementById('rp_solve').value;
+  if(v==='pace'){
+    var dist=parseFloat(document.getElementById('rp_dist').value);
+    var h=parseFloat(document.getElementById('rp_hours').value)||0;
+    var m=parseFloat(document.getElementById('rp_mins').value)||0;
+    var s=parseFloat(document.getElementById('rp_secs').value)||0;
+    var totalSecs=h*3600+m*60+s;
+    if(!dist||!totalSecs)return alert('Enter distance and time.');
+    var secsMile=totalSecs/dist;
+    document.getElementById('rp_label').textContent='Your Pace';
+    document.getElementById('rp_main').textContent=fmtPace(secsMile);
+    document.getElementById('rp_sub').textContent=fmtPace(secsMile/1.609)+' per km';
+  } else if(v==='time'){
+    var dist=parseFloat(document.getElementById('rp_dist').value);
+    var pm=parseFloat(document.getElementById('rp_pace_min').value)||0;
+    var ps=parseFloat(document.getElementById('rp_pace_sec').value)||0;
+    var paceTotal=pm*60+ps;
+    if(!dist||!paceTotal)return alert('Enter distance and pace.');
+    var total=dist*paceTotal;
+    document.getElementById('rp_label').textContent='Estimated Time';
+    document.getElementById('rp_main').textContent=fmtTime(total);
+    document.getElementById('rp_sub').textContent='For '+dist+' miles at '+fmtPace(paceTotal);
+  } else {
+    var h=parseFloat(document.getElementById('rp_hours').value)||0;
+    var m=parseFloat(document.getElementById('rp_mins').value)||0;
+    var s=parseFloat(document.getElementById('rp_secs').value)||0;
+    var pm=parseFloat(document.getElementById('rp_pace_min').value)||0;
+    var ps=parseFloat(document.getElementById('rp_pace_sec').value)||0;
+    var totalSecs=h*3600+m*60+s;
+    var paceTotal=pm*60+ps;
+    if(!totalSecs||!paceTotal)return alert('Enter time and pace.');
+    var dist=Math.round(totalSecs/paceTotal*100)/100;
+    document.getElementById('rp_label').textContent='Distance Covered';
+    document.getElementById('rp_main').textContent=dist+' miles';
+    document.getElementById('rp_sub').textContent=Math.round(dist*1.609*100)/100+' km';
+  }
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Running Pace Guide</h2>
+<p>Average pace for recreational runners is 10–12 min/mile. For competitive 5K runners, 7–9 min/mile is typical. Elite marathoners run under 5 min/mile.</p>
+<p>A good rule of thumb: your easy run pace should be 60–90 seconds per mile slower than your 5K pace. Training at the right intensity improves aerobic base without overtraining.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="calories-burned.html"><span class="dot"></span>Calories Burned</a></li>
+<li><a href="running-pace.html"><span class="dot"></span>Running Pace</a></li>
+<li><a href="heart-rate-zones.html"><span class="dot"></span>Heart Rate Zones</a></li>
+<li><a href="vo2-max.html"><span class="dot"></span>VO2 Max</a></li>
+<li><a href="walking-calories.html"><span class="dot"></span>Walking Calories</a></li>
+<li><a href="steps-calories.html"><span class="dot"></span>Steps→Calories</a></li>
+<li><a href="pushup-calories.html"><span class="dot"></span>Push-up Burn</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

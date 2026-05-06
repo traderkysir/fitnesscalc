@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calorie Deficit Calculator — FitnessCalc</title>
+<meta name="description" content="Find the right calorie deficit to meet your weight loss goal.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/calorie-deficit.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Nutrition<span>›</span>Calorie Deficit Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Calorie Deficit Calculator</h1>
+<p class="subtitle">How many calories should you eat to lose weight?</p>
+<div class="form-row"><label>Your TDEE (calories/day)</label><input type="number" id="cd_tdee" placeholder="e.g. 2400"></div>
+<div class="form-row"><label>Goal: Weekly Weight Loss (lbs)</label>
+  <select id="cd_rate">
+    <option value="0.5">0.5 lb/week (light deficit)</option>
+    <option value="1" selected>1 lb/week (recommended)</option>
+    <option value="1.5">1.5 lbs/week (moderate)</option>
+    <option value="2">2 lbs/week (aggressive)</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcCD()">Calculate Deficit</button>
+<div class="result-box" id="result">
+  <div class="result-label">Daily Calorie Target</div>
+  <div class="result-main" id="cd_main">—</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="val" id="cd_deficit">—</div><div class="lbl">Daily Deficit</div></div>
+    <div class="result-item"><div class="val" id="cd_weekly">—</div><div class="lbl">Cal/week deficit</div></div>
+    <div class="result-item"><div class="val" id="cd_month">—</div><div class="lbl">Projected lbs/month</div></div>
+    <div class="result-item"><div class="val" id="cd_time">—</div><div class="lbl">Days to lose 10 lbs</div></div>
+  </div>
+</div>
+<script>
+function calcCD(){
+  var tdee=parseFloat(document.getElementById('cd_tdee').value);
+  var rate=parseFloat(document.getElementById('cd_rate').value);
+  if(!tdee)return alert('Please enter your TDEE.');
+  var deficit=rate*500;
+  var target=tdee-deficit;
+  document.getElementById('cd_main').textContent=Math.round(target)+' kcal/day';
+  document.getElementById('cd_deficit').textContent=deficit+' kcal/day';
+  document.getElementById('cd_weekly').textContent=(deficit*7)+' kcal';
+  document.getElementById('cd_month').textContent=Math.round(rate*4.33*10)/10+' lbs';
+  document.getElementById('cd_time').textContent=Math.round(10/rate*7)+' days';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>How Does a Calorie Deficit Work?</h2>
+<p>One pound of body fat is approximately 3,500 calories. A daily deficit of 500 calories creates a weekly deficit of 3,500 calories, resulting in approximately 1 lb of fat loss per week. This is a widely recommended sustainable rate for most adults.</p>
+<p>Deficits larger than 1,000 calories per day (2 lbs/week) may increase muscle loss and are not recommended for extended periods. Eating less than 1,200 calories/day (women) or 1,500 (men) is not advisable without medical supervision.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="tdee.html"><span class="dot"></span>TDEE</a></li>
+<li><a href="calorie-deficit.html"><span class="dot"></span>Calorie Deficit</a></li>
+<li><a href="macros.html"><span class="dot"></span>Macros</a></li>
+<li><a href="protein-intake.html"><span class="dot"></span>Protein</a></li>
+<li><a href="water-intake.html"><span class="dot"></span>Water Intake</a></li>
+<li><a href="muscle-gain-calories.html"><span class="dot"></span>Muscle Calories</a></li>
+<li><a href="weight-loss-timeline.html"><span class="dot"></span>Weight Loss Timeline</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

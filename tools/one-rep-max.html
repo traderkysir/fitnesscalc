@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Rep Max Calculator — FitnessCalc</title>
+<meta name="description" content="Estimate your 1RM from any rep-weight combination using 5 formulas.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/one-rep-max.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Strength<span>›</span>One Rep Max Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>One Rep Max (1RM) Calculator</h1>
+<p class="subtitle">Estimate your 1RM using 5 validated formulas.</p>
+<div class="form-row"><label>Weight Lifted (lbs)</label><input type="number" id="orm_weight" placeholder="e.g. 225"></div>
+<div class="form-row"><label>Reps Performed</label>
+  <select id="orm_reps">
+    <option value="1">1 rep</option>
+    <option value="2">2 reps</option>
+    <option value="3">3 reps</option>
+    <option value="4">4 reps</option>
+    <option value="5" selected>5 reps</option>
+    <option value="6">6 reps</option>
+    <option value="7">7 reps</option>
+    <option value="8">8 reps</option>
+    <option value="10">10 reps</option>
+    <option value="12">12 reps</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcORM()">Calculate 1RM</button>
+<div class="result-box" id="result">
+  <div class="result-label">Estimated 1 Rep Max</div>
+  <div class="result-main" id="orm_main">—</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="val" id="orm_epley">—</div><div class="lbl">Epley</div></div>
+    <div class="result-item"><div class="val" id="orm_brzycki">—</div><div class="lbl">Brzycki</div></div>
+    <div class="result-item"><div class="val" id="orm_lombardi">—</div><div class="lbl">Lombardi</div></div>
+    <div class="result-item"><div class="val" id="orm_mayhew">—</div><div class="lbl">Mayhew</div></div>
+  </div>
+  <div style="margin-top:16px" id="orm_pcts"></div>
+</div>
+<script>
+function calcORM(){
+  var w=parseFloat(document.getElementById('orm_weight').value);
+  var r=parseFloat(document.getElementById('orm_reps').value);
+  if(!w)return alert('Please enter weight.');
+  var epley=r===1?w:w*(1+r/30);
+  var brzycki=r===1?w:w/(1.0278-0.0278*r);
+  var lombardi=w*Math.pow(r,0.10);
+  var mayhew=100*w/(52.2+41.9*Math.exp(-0.055*r));
+  var avg=Math.round((epley+brzycki+lombardi+mayhew)/4);
+  document.getElementById('orm_main').textContent=avg+' lbs';
+  document.getElementById('orm_epley').textContent=Math.round(epley)+' lbs';
+  document.getElementById('orm_brzycki').textContent=Math.round(brzycki)+' lbs';
+  document.getElementById('orm_lombardi').textContent=Math.round(lombardi)+' lbs';
+  document.getElementById('orm_mayhew').textContent=Math.round(mayhew)+' lbs';
+  var pcts=[100,95,90,85,80,75,70,65,60];
+  var html='<table style="width:100%;font-size:0.88rem;border-collapse:collapse"><tr style="background:var(--green-pale)"><th style="padding:6px 10px;text-align:left;font-family:Exo 2,sans-serif">%</th><th style="padding:6px 10px;text-align:right;font-family:Exo 2,sans-serif">Weight (lbs)</th></tr>';
+  pcts.forEach(function(p){html+='<tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px">'+p+'%</td><td style="padding:5px 10px;text-align:right;font-weight:700">'+Math.round(avg*p/100)+' lbs</td></tr>';});
+  html+='</table>';
+  document.getElementById('orm_pcts').innerHTML=html;
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>1RM Estimation Formulas</h2>
+<p>All formulas become less accurate as reps increase above 10. For best results, test with a weight you can lift for 3–8 reps. The Epley and Brzycki formulas are the most widely used in academic research.</p>
+<p>Use the percentage table for programming: 85% is heavy (3–5 reps), 75% is moderate (8–10 reps), 65% is light (12–15 reps). This is the foundation of percentage-based strength programming.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="one-rep-max.html"><span class="dot"></span>One Rep Max</a></li>
+<li><a href="bench-press.html"><span class="dot"></span>Bench Press</a></li>
+<li><a href="squat-max.html"><span class="dot"></span>Squat Max</a></li>
+<li><a href="deadlift-max.html"><span class="dot"></span>Deadlift Max</a></li>
+<li><a href="workout-volume.html"><span class="dot"></span>Workout Volume</a></li>
+<li><a href="sleep-calculator.html"><span class="dot"></span>Sleep Calculator</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

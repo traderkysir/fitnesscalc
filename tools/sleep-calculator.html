@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Calculator — FitnessCalc</title>
+<meta name="description" content="Find the best bedtime or wake time based on 90-minute sleep cycles.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/sleep-calculator.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Recovery<span>›</span>Sleep Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Sleep Calculator</h1>
+<p class="subtitle">Find the best bedtime or wake time based on 90-min sleep cycles.</p>
+<div class="toggle-row">
+  <button class="toggle-btn active" onclick="setSLMode('wake',this)">I want to wake up at…</button>
+  <button class="toggle-btn" onclick="setSLMode('bed',this)">I want to go to bed at…</button>
+</div>
+<div id="sl_wake_row" class="form-row"><label>Wake-up Time</label><input type="time" id="sl_wake" value="07:00"></div>
+<div id="sl_bed_row" class="form-row hidden"><label>Bedtime</label><input type="time" id="sl_bed" value="23:00"></div>
+<div class="form-row"><label>Time to Fall Asleep (minutes)</label>
+  <select id="sl_latency">
+    <option value="10">~10 minutes</option>
+    <option value="15" selected>~15 minutes</option>
+    <option value="20">~20 minutes</option>
+    <option value="30">~30 minutes</option>
+  </select>
+</div>
+<button class="calc-btn" onclick="calcSL()">Calculate Sleep Times</button>
+<div class="result-box" id="result">
+  <div class="result-label" id="sl_label">Optimal Bedtimes</div>
+  <div id="sl_times"></div>
+  <div class="result-sub" style="margin-top:12px">Based on 90-minute sleep cycles. Each row represents a full cycle count.</div>
+</div>
+<script>
+var slMode='wake';
+function setSLMode(m,btn){slMode=m;document.getElementById('sl_wake_row').classList.toggle('hidden',m==='bed');document.getElementById('sl_bed_row').classList.toggle('hidden',m==='wake');}
+function calcSL(){
+  var lat=parseInt(document.getElementById('sl_latency').value);
+  var html='<div style="margin-top:10px">';
+  if(slMode==='wake'){
+    var val=document.getElementById('sl_wake').value;
+    var [h,m]=val.split(':').map(Number);
+    var wakeMin=h*60+m;
+    document.getElementById('sl_label').textContent='Suggested Bedtimes';
+    [6,5,4].forEach(function(cycles){
+      var sleepMin=wakeMin-(cycles*90+lat);
+      if(sleepMin<0)sleepMin+=1440;
+      var bh=Math.floor(sleepMin/60)%24;
+      var bm=sleepMin%60;
+      var label=cycles===6?'🌟 Optimal':cycles===5?'✅ Good':'⚠️ Short';
+      html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:8px;background:var(--white);border:1px solid var(--green-pale);margin-bottom:8px"><span>'+label+' ('+cycles+' cycles)</span><strong style="font-family:Exo 2,sans-serif;font-size:1.1rem">'+bh.toString().padStart(2,'0')+ ':'+bm.toString().padStart(2,'0')+ '</strong></div>';
+    });
+  } else {
+    var val=document.getElementById('sl_bed').value;
+    var [h,m]=val.split(':').map(Number);
+    var bedMin=h*60+m+lat;
+    document.getElementById('sl_label').textContent='Suggested Wake Times';
+    [4,5,6].forEach(function(cycles){
+      var wMin=bedMin+(cycles*90);
+      wMin=wMin%1440;
+      var wh=Math.floor(wMin/60)%24;
+      var wm=wMin%60;
+      var label=cycles===4?'⚠️ Short (6h)':cycles===5?'✅ Good (7.5h)':'🌟 Optimal (9h)';
+      html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:8px;background:var(--white);border:1px solid var(--green-pale);margin-bottom:8px"><span>'+label+'</span><strong style="font-family:Exo 2,sans-serif;font-size:1.1rem">'+wh.toString().padStart(2,'0')+ ':'+wm.toString().padStart(2,'0')+ '</strong></div>';
+    });
+  }
+  html+='</div>';
+  document.getElementById('sl_times').innerHTML=html;
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Why Sleep Cycles Matter</h2>
+<p>Sleep occurs in 90-minute cycles, each containing light sleep, deep sleep, and REM sleep. Waking mid-cycle leaves you feeling groggy. Timing your alarm to the end of a complete cycle lets you wake naturally at the lightest stage of sleep.</p>
+<p>Most adults need 5–6 complete cycles (7.5–9 hours) per night. REM sleep, which supports memory consolidation and emotional processing, is most abundant in the final cycles before waking — another reason cutting sleep short is costly.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="one-rep-max.html"><span class="dot"></span>One Rep Max</a></li>
+<li><a href="bench-press.html"><span class="dot"></span>Bench Press</a></li>
+<li><a href="squat-max.html"><span class="dot"></span>Squat Max</a></li>
+<li><a href="deadlift-max.html"><span class="dot"></span>Deadlift Max</a></li>
+<li><a href="workout-volume.html"><span class="dot"></span>Workout Volume</a></li>
+<li><a href="sleep-calculator.html"><span class="dot"></span>Sleep Calculator</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>

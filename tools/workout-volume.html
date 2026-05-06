@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3481664153679424" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workout Volume Calculator — FitnessCalc</title>
+<meta name="description" content="Calculate total training volume and per-exercise breakdown.">
+<link rel="canonical" href="https://fitnesscalc.com/tools/workout-volume.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">💪 Fitness<span>Calc</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a><span>›</span>Strength<span>›</span>Workout Volume Calculator
+  </div>
+</div>
+<div class="calc-layout">
+  <div>
+    <div class="calc-card"><h1>Workout Volume Calculator</h1>
+<p class="subtitle">Calculate total training volume (sets × reps × weight).</p>
+<div id="wv_exercises">
+  <div class="wv-exercise" style="border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px">
+    <div class="form-row"><label>Exercise Name</label><input type="text" class="wv-name" placeholder="e.g. Bench Press"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div class="form-row"><label>Sets</label><input type="number" class="wv-sets" placeholder="3"></div>
+      <div class="form-row"><label>Reps</label><input type="number" class="wv-reps" placeholder="8"></div>
+      <div class="form-row"><label>Weight (lbs)</label><input type="number" class="wv-weight" placeholder="135"></div>
+    </div>
+  </div>
+</div>
+<button type="button" onclick="addExercise()" style="background:none;border:2px dashed var(--green);color:var(--green);padding:10px;width:100%;border-radius:8px;font-family:Exo 2,sans-serif;font-weight:700;cursor:pointer;margin-bottom:16px">+ Add Exercise</button>
+<button class="calc-btn" onclick="calcWV()">Calculate Volume</button>
+<div class="result-box" id="result">
+  <div class="result-label">Total Workout Volume</div>
+  <div class="result-main" id="wv_main">—</div>
+  <div id="wv_breakdown"></div>
+</div>
+<script>
+function addExercise(){
+  var div=document.createElement('div');
+  div.className='wv-exercise';
+  div.style.cssText='border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px';
+  div.innerHTML='<div class="form-row"><label>Exercise Name</label><input type="text" class="wv-name" placeholder="e.g. Squat"></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px"><div class="form-row"><label>Sets</label><input type="number" class="wv-sets" placeholder="3"></div><div class="form-row"><label>Reps</label><input type="number" class="wv-reps" placeholder="8"></div><div class="form-row"><label>Weight (lbs)</label><input type="number" class="wv-weight" placeholder="135"></div></div>';
+  document.getElementById('wv_exercises').appendChild(div);
+}
+function calcWV(){
+  var exercises=document.querySelectorAll('.wv-exercise');
+  var total=0; var rows='';
+  exercises.forEach(function(ex){
+    var name=ex.querySelector('.wv-name').value||'Exercise';
+    var sets=parseFloat(ex.querySelector('.wv-sets').value)||0;
+    var reps=parseFloat(ex.querySelector('.wv-reps').value)||0;
+    var wt=parseFloat(ex.querySelector('.wv-weight').value)||0;
+    var vol=sets*reps*wt;
+    total+=vol;
+    if(vol>0)rows+='<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 10px">'+name+'</td><td style="padding:6px 10px;text-align:right;font-weight:700">'+vol.toLocaleString()+' lbs</td></tr>';
+  });
+  document.getElementById('wv_main').textContent=total.toLocaleString()+' lbs';
+  document.getElementById('wv_breakdown').innerHTML=rows?'<table style="width:100%;font-size:0.88rem;margin-top:14px;border-collapse:collapse"><tr style="background:var(--green-pale)"><th style="padding:6px 10px;text-align:left">Exercise</th><th style="padding:6px 10px;text-align:right">Volume</th></tr>'+rows+'</table>':'';
+  showResult('result');
+}
+</script></div>
+    <div class="info-box" style="margin-top:24px"><h2>Why Track Training Volume?</h2>
+<p>Training volume (sets × reps × weight) is one of the primary drivers of hypertrophy. Research shows that higher volumes (10+ sets per muscle group per week) are superior for muscle growth, while lower volumes (3–6 sets) are more appropriate for strength and power.</p>
+<p>Tracking volume over time allows you to progressively overload systematically — adding 2–5% volume each week to continue making progress. When volume plateaus, that is often a sign it is time to deload or adjust programming.</p></div>
+  </div>
+  <div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Related Tools</h3>
+    <ul class="sidebar-links"><li><a href="one-rep-max.html"><span class="dot"></span>One Rep Max</a></li>
+<li><a href="bench-press.html"><span class="dot"></span>Bench Press</a></li>
+<li><a href="squat-max.html"><span class="dot"></span>Squat Max</a></li>
+<li><a href="deadlift-max.html"><span class="dot"></span>Deadlift Max</a></li>
+<li><a href="workout-volume.html"><span class="dot"></span>Workout Volume</a></li>
+<li><a href="sleep-calculator.html"><span class="dot"></span>Sleep Calculator</a></li></ul>
+  </div>
+  <div class="sidebar-card" style="background:var(--green-faint);border-color:var(--green-pale)">
+    <h3 style="color:var(--green-darker)">💡 Tip</h3>
+    <p style="font-size:0.88rem;color:var(--green-deeper);line-height:1.55">All calculations run in your browser. No data is ever sent to our servers.</p>
+  </div>
+</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <span>© 2025 FitnessCalc.com — For informational purposes only. Not medical advice.</span>
+      <div><a href="../privacy.html">Privacy</a>&nbsp;&nbsp;<a href="../about.html">About</a></div>
+    </div>
+  </div>
+</footer>
+<script src="../js/common.js"></script>
+</body>
+</html>
